@@ -1,0 +1,24 @@
+{
+    "name": "gamez/typed-collection",
+    "description": "Type-safe collections based on Laravel Collections",
+    "keywords": ["laravel", "collection", "typed", "typesafe", "type-safe"],
+    "homepage": "https://github.com/jeromegamez/typed-collection",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jérôme Gamez",
+            "email": "jerome@gamez.name"
+        }
+    ],
+    "require": {
+        "tightenco/collect": "^5.4"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^6.3"
+    },
+    "autoload": {
+        "files": [
+            "TypedCollection.php"
+        ]
+    }
+}
