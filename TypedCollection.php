@@ -36,15 +36,6 @@ class TypedCollection extends Collection
         return parent::put($key, $value);
     }
 
-    public function map(callable $callback)
-    {
-        try {
-            return parent::map($callback);
-        } catch (\InvalidArgumentException $e) {
-            return Collection::make($this->items)->map($callback);
-        }
-    }
-
     /**
      * Returns an untyped collection with all items
      */

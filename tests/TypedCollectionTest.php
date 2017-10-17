@@ -37,21 +37,6 @@ class TypedCollectionTest extends TestCase
     }
 
     /** @test */
-    public function it_returns_a_normal_collection_when_mapped_with_invalid_values()
-    {
-        $items = [new \DateTime()];
-
-        $collection = new class($items) extends TypedCollection {
-            protected static $allowedTypes = [\DateTimeInterface::class];
-        };
-
-        $dateStrings = $collection->map(function (\DateTime $dt) { return $dt->format(\DateTime::ATOM); });
-
-        $this->assertInstanceOf(Collection::class, $dateStrings);
-        $this->assertNotInstanceOf(TypedCollection::class, $dateStrings);
-    }
-
-    /** @test */
     public function it_can_be_untyped()
     {
         $this->assertNotInstanceOf(TypedCollection::class, (new TypedCollection())->untype());
