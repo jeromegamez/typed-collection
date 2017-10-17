@@ -50,4 +50,10 @@ class TypedCollectionTest extends TestCase
         $this->assertInstanceOf(Collection::class, $dateStrings);
         $this->assertNotInstanceOf(TypedCollection::class, $dateStrings);
     }
+
+    /** @test */
+    public function it_can_be_untyped()
+    {
+        $this->assertNotInstanceOf(TypedCollection::class, (new TypedCollection())->untype());
+    }
 }

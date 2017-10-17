@@ -45,6 +45,14 @@ class TypedCollection extends Collection
         }
     }
 
+    /**
+     * Returns an untyped collection with all items
+     */
+    public function untype()
+    {
+        return Collection::make($this->items);
+    }
+
     protected function assertValidType($item)
     {
         $result = array_reduce(static::$allowedTypes, function ($isValid, $allowedType) use ($item) {
