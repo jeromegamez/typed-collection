@@ -11,6 +11,7 @@
         }
     ],
     "require": {
+        "php": "^7.0",
         "tightenco/collect": "^5.4"
     },
     "require-dev": {
