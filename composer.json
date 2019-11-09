@@ -14,11 +14,16 @@
         "tightenco/collect": "^5.4|^6.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "^6.5|^7.5"
+        "phpunit/phpunit": "^5.7|^6.5|^7.5"
     },
     "autoload": {
-        "files": [
-            "TypedCollection.php"
-        ]
+        "psr-4": {
+            "Gamez\\Illuminate\\Support\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Gamez\\Illuminate\\Support\\Tests\\": "tests"
+        }
     }
 }

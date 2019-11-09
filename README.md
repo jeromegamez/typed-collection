@@ -15,8 +15,6 @@ $ composer require gamez/typed-collection
 ## Usage
 
 ```php
-use Gamez\Illuminate\Support\TypedCollection;
-
 class Person
 {
     public $name;
@@ -27,12 +25,21 @@ class Person
     }
 }
 
+$taylor = new Person('Taylor');
+$jeffrey = new Person('Jeffrey');
+```
+
+### Typed Collections
+
+```php
+use Gamez\Illuminate\Support\TypedCollection;
+
 class People extends TypedCollection
 {
     protected static $allowedTypes = [Person::class];
 }
 
-People::make([new Person('Taylor'), new Person('Jeffrey')])
+$people = People::make([$taylor, $jeffrey])
     ->each(function (Person $person) {
         printf("This is %s.\n", $person->name);
     });
@@ -42,11 +49,42 @@ This is Jeffrey.
 */
 
 try {
-    People::make('Nope!');
+    People::make('Not a person');
 } catch (InvalidArgumentException $e) {
     echo $e->getMessage().PHP_EOL;
-    // Output: A People collection only accepts objects of the following types: Person.
 }
+/* Output:
+Output: A People collection only accepts objects of the following type(s): Person.
+*/
+```
+
+### Lazy Typed Collections
+
+```php
+use Gamez\Illuminate\Support\LazyTypedCollection;
+
+class LazyPeople extends LazyTypedCollection
+{
+    protected static $allowedTypes = [Person::class];
+}
+
+$lazyPeople = LazyPeople::make([$taylor, $jeffrey])
+    ->each(function (Person $person) {
+        printf("This is %s.\n", $person->name);
+    });
+/* Output:
+This is Lazy Taylor.
+This is Lazy Jeffrey.
+*/
+
+try {
+    LazyPeople::make('Nope!');
+} catch (InvalidArgumentException $e) {
+    echo $e->getMessage().PHP_EOL;
+}
+/* Output:
+Output: A People collection only accepts objects of the following type(s): Person.
+*/
 ```
 
 For further information on how to use Laravel Collections,

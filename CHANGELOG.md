@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- Added `LazyTypedCollection`
+- Ensured support for Laravel/Illuminate `^5.4|^6.0`
+
 ## 2.0 - 2017-10-17
 
 - Added method `untype()` to return an untyped collection
