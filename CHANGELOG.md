@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 2.1.0 - 2019-11-10
 
 - Added `LazyTypedCollection`
 - Ensured support for Laravel/Illuminate `^5.4|^6.0`
