@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.2.0 - 2019-11-19
+
+- Added support for arrayable items ([#3](https://github.com/jeromegamez/typed-collection/issues/3))
+
 ## 2.1.0 - 2019-11-10
 
 - Added `LazyTypedCollection`
