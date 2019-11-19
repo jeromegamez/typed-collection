@@ -97,4 +97,24 @@ class TypedCollectionTest extends TestCase
         $this->assertNotInstanceOf(DateTimeCollection::class, $untyped);
         $this->assertNotInstanceOf(TypedCollection::class, $untyped);
     }
+
+    /** @test */
+    public function it_can_be_converted_to_an_array()
+    {
+        $this->collection->push(new DateTime());
+        $this->collection->push(new DateTime());
+
+        $this->assertCount(2, $this->collection->toArray());
+    }
+
+    /**
+     * @test
+     * @see https://github.com/jeromegamez/typed-collection/issues/2
+     */
+    public function it_works_with_items_that_themselves_are_arrayable()
+    {
+        $collection = new ArrayableItemCollection();
+        $collection->push(new ArrayableItem());
+        $this->assertCount(1, $collection->toArray());
+    }
 }

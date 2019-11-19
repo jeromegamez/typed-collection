@@ -46,4 +46,22 @@ class LazyTypedCollectionTest extends TestCase
         $this->assertNotInstanceOf(LazyDateTimeCollection::class, $untyped);
         $this->assertNotInstanceOf(LazyTypedCollection::class, $untyped);
     }
+
+    /** @test */
+    public function it_can_be_converted_to_an_array()
+    {
+        $collection = new LazyDateTimeCollection([new DateTime(), new DateTime()]);
+
+        $this->assertCount(2, $collection->toArray());
+    }
+
+    /**
+     * @test
+     * @see https://github.com/jeromegamez/typed-collection/issues/2
+     */
+    public function it_works_with_items_that_themselves_are_arrayable()
+    {
+        $collection = new LazyArrayableItemCollection([new ArrayableItem()]);
+        $this->assertCount(1, $collection->toArray());
+    }
 }
