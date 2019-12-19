@@ -49,6 +49,11 @@ class TypedCollection extends Collection
         return $this->untype()->pluck($value, $key);
     }
 
+    public function keys()
+    {
+        return $this->untype()->keys();
+    }
+
     public function toArray()
     {
         // If the items in the collection are arrayable themselves,

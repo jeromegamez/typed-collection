@@ -132,4 +132,14 @@ class TypedCollectionTest extends TestCase
         $this->assertEquals([null, null, null], $collection->pluck('name')->toArray());
         $this->assertEquals([1, 2, 3], $collection->pluck('id')->toArray());
     }
+
+    /** @test */
+    public function it_returns_keys()
+    {
+        $collection = new ArrayableItemCollection();
+        $collection->put('a' ,new ArrayableItem());
+        $collection->put('b', new ArrayableItem());
+
+        $this->assertEquals(['a', 'b'], $collection->keys()->toArray());
+    }
 }
