@@ -15,6 +15,11 @@ class LazyTypedCollection extends LazyCollection
         $this->assertValidTypes();
     }
 
+    public function pluck($value, $key = null)
+    {
+        return $this->untype()->pluck($value, $key);
+    }
+
     public function toArray()
     {
         // If the items in the collection are arrayable themselves,
