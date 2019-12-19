@@ -64,4 +64,20 @@ class LazyTypedCollectionTest extends TestCase
         $collection = new LazyArrayableItemCollection([new ArrayableItem()]);
         $this->assertCount(1, $collection->toArray());
     }
+
+    /**
+     * @test
+     * @see https://github.com/jeromegamez/typed-collection/issues/4
+     */
+    public function items_can_be_plucked()
+    {
+        $collection = new LazyArrayableItemCollection([
+            new ArrayableItem(1, 'a'),
+            new ArrayableItem(2, 'b'),
+            new ArrayableItem(3, 'c')
+        ]);
+
+        $this->assertEquals([null, null, null], $collection->pluck('name')->toArray());
+        $this->assertEquals([1, 2, 3], $collection->pluck('id')->toArray());
+    }
 }

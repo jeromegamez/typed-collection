@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- The `pluck()` method didn't work as expected ([#4](https://github.com/jeromegamez/typed-collection/issues/4))
+
 ## 2.2.0 - 2019-11-19
 
 - Added support for arrayable items ([#3](https://github.com/jeromegamez/typed-collection/issues/3))
