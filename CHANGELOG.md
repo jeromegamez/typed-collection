@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 2.2.1 - 2019-12-19
 
 - The `pluck()` method didn't work as expected ([#4](https://github.com/jeromegamez/typed-collection/issues/4))
 - The `keys()` method didn't work as expected
