@@ -26,5 +26,11 @@
         "psr-4": {
             "Gamez\\Illuminate\\Support\\Tests\\": "tests"
         }
-    }
+    },
+    "funding": [
+        {
+            "type": "github",
+            "url": "https://github.com/sponsors/jeromegamez"
+        }
+    ]
 }
