@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 3.0.0 - 2020-04-28
 
 - Add support for Laravel ^7.0
 - Drop support for Laravel <7.0
