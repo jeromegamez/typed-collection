@@ -15,11 +15,13 @@ class TypedCollection extends Collection
         $this->assertValidTypes();
     }
 
-    public function push($value)
+    public function push(...$values)
     {
-        $this->assertValidType($value);
+        foreach ($values as $value) {
+            $this->assertValidType($value);
+        }
 
-        return parent::push($value);
+        return parent::push($values);
     }
 
     public function offsetSet($key, $value)
@@ -40,8 +42,7 @@ class TypedCollection extends Collection
     {
         $this->assertValidType($value);
 
-        // Using push, because add has only been added after 5.4
-        return $this->push($value);
+        return parent::add($value);
     }
 
     public function pluck($value, $key = null)

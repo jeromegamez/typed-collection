@@ -13,7 +13,7 @@ class TypedCollectionTest extends TestCase
     /** @var DateTimeCollection */
     private $collection;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->collection = new DateTimeCollection();
     }
@@ -124,10 +124,11 @@ class TypedCollectionTest extends TestCase
      */
     public function items_can_be_plucked()
     {
-        $collection = new ArrayableItemCollection();
-        $collection->push(new ArrayableItem(1, 'a'));
-        $collection->push(new ArrayableItem(2, 'b'));
-        $collection->push(new ArrayableItem(3, 'c'));
+        $collection = new ArrayableItemCollection([
+            new ArrayableItem(1, 'a'),
+            new ArrayableItem(2, 'b'),
+            new ArrayableItem(3, 'c'),
+        ]);
 
         $this->assertEquals([null, null, null], $collection->pluck('name')->toArray());
         $this->assertEquals([1, 2, 3], $collection->pluck('id')->toArray());

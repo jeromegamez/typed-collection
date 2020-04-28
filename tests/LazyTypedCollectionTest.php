@@ -14,7 +14,7 @@ class LazyTypedCollectionTest extends TestCase
     /** @var LazyDateTimeCollection */
     private $collection;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         if (!class_exists(LazyCollection::class)) {
             $this->markTestSkipped();

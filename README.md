@@ -13,6 +13,15 @@ The package can be installed with [Composer]:
 $ composer require gamez/typed-collection
 ```
 
+If you're inside a Laravel/Lumen project, you're done. Otherwise, you need to add either
+[illuminate/support](https://github.com/illuminate/support) or [tightenco/collect](https://github.com/tightenco/collect):
+
+```bash
+$ composer require illuminate/support
+# or
+$ composer require tightenco/collect
+```
+
 ## Usage
 
 ```php

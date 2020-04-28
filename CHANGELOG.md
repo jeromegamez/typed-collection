@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+- Add support for Laravel ^7.0
+- Drop support for Laravel <7.0
+- Replace forced installation of tightenco/collect with information on how to integrate
+
 ## 2.3.0 - 2020-04-28
 
 - Declare incompatibility with Laravel >=7.0
