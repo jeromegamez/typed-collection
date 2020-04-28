@@ -17,6 +17,10 @@
         "phpunit/phpunit": "^5.7|^6.5|^7.5",
         "illuminate/support": "^5.4|^6.0"
     },
+    "conflict": {
+        "tightenco/collect": ">=7.0",
+        "illuminate/support": ">=7.0"
+    },
     "autoload": {
         "psr-4": {
             "Gamez\\Illuminate\\Support\\": "src"

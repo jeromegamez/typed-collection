@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Declare incompatibility with Laravel >=7.0
+
 ## 2.2.1 - 2019-12-19
 
 - The `pluck()` method didn't work as expected ([#4](https://github.com/jeromegamez/typed-collection/issues/4))
