@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 2.3.0 - 2020-04-28
 
 - Declare incompatibility with Laravel >=7.0
 
