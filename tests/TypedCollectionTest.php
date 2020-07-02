@@ -120,6 +120,21 @@ class TypedCollectionTest extends TestCase
 
     /**
      * @test
+     * @see https://github.com/jeromegamez/typed-collection/issues/7
+     */
+    public function it_accepts_items_to_be_pushed()
+    {
+        $collection = new ArrayableItemCollection();
+
+        $collection->push(...[new ArrayableItem(), new ArrayableItem()]);
+        $this->assertCount(2, $collection);
+
+        $collection->push(new ArrayableItem(), new ArrayableItem());
+        $this->assertCount(4, $collection);
+    }
+
+    /**
+     * @test
      * @see https://github.com/jeromegamez/typed-collection/issues/4
      */
     public function items_can_be_plucked()

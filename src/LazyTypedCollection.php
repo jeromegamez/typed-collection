@@ -12,7 +12,9 @@ class LazyTypedCollection extends LazyCollection
     {
         parent::__construct($source);
 
-        $this->assertValidTypes();
+        $this->each(function ($item) {
+            $this->assertValidType($item);
+        });
     }
 
     public function pluck($value, $key = null)

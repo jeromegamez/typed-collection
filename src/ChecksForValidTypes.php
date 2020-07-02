@@ -6,11 +6,11 @@ trait ChecksForValidTypes
 {
     protected static $allowedTypes = [];
 
-    protected function assertValidTypes()
+    protected function assertValidTypes(...$items)
     {
-        $this->each(function ($item) {
+        foreach ($items as $item) {
             $this->assertValidType($item);
-        });
+        }
     }
 
     protected function assertValidType($item)

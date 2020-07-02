@@ -10,9 +10,9 @@ class TypedCollection extends Collection
 
     public function __construct($items = [])
     {
-        parent::__construct($items);
+        $this->assertValidTypes(...$items);
 
-        $this->assertValidTypes();
+        parent::__construct($items);
     }
 
     public function push(...$values)
@@ -21,8 +21,9 @@ class TypedCollection extends Collection
             $this->assertValidType($value);
         }
 
-        return parent::push($values);
+        return parent::push(...$values);
     }
+
 
     public function offsetSet($key, $value)
     {

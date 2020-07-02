@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Fixed `TypedCollection::push()` ([#7](https://github.com/jeromegamez/typed-collection/issues/7))
+
 ## 3.0.0 - 2020-04-28
 
 - Add support for Laravel ^7.0
