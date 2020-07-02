@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 3.0.1 - 2020-07-02
 
 - Fixed `TypedCollection::push()` ([#7](https://github.com/jeromegamez/typed-collection/issues/7))
 
