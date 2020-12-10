@@ -22,6 +22,9 @@ class LazyTypedCollection extends LazyCollection
         return $this->untype()->pluck($value, $key);
     }
 
+    /**
+     * @return array
+     */
     public function toArray()
     {
         // If the items in the collection are arrayable themselves,
@@ -34,7 +37,7 @@ class LazyTypedCollection extends LazyCollection
     /**
      * Returns an untyped collection with all items
      */
-    public function untype()
+    public function untype(): LazyCollection
     {
         return LazyCollection::make($this);
     }

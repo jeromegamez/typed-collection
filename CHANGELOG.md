@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- This library is now based on [`illuminate/collections`](https://github.com/illuminate/collections)
+  and tested with PHP 7.4 and 8.0
+
 ## 3.0.1 - 2020-07-02
 
 - Fixed `TypedCollection::push()` ([#7](https://github.com/jeromegamez/typed-collection/issues/7))

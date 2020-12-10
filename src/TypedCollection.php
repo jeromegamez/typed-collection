@@ -15,6 +15,12 @@ class TypedCollection extends Collection
         parent::__construct($items);
     }
 
+    /**
+     * Push one or more items onto the end of the collection.
+     *
+     * @param  mixed  $values [optional]
+     * @return $this
+     */
     public function push(...$values)
     {
         foreach ($values as $value) {
@@ -56,6 +62,9 @@ class TypedCollection extends Collection
         return $this->untype()->keys();
     }
 
+    /**
+     * @return array
+     */
     public function toArray()
     {
         // If the items in the collection are arrayable themselves,
@@ -68,7 +77,7 @@ class TypedCollection extends Collection
     /**
      * Returns an untyped collection with all items
      */
-    public function untype()
+    public function untype(): Collection
     {
         return Collection::make($this->items);
     }

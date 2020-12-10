@@ -11,21 +11,10 @@
         }
     ],
     "require": {
-        "php": "^7.2.5"
+        "illuminate/collections": "^8.0"
     },
     "require-dev": {
-        "illuminate/support": "^7.8",
-        "phpunit/phpunit": "^8.5"
-    },
-    "suggest": {
-        "illuminate/support": "^7.0 To use this library within a Laravel/Lumen project",
-        "tightenco/collect": "^7.0 To use this library stand-alone"
-    },
-    "conflict": {
-        "illuminate/support": "<7.0",
-        "laravel/framework": "<7.0",
-        "laravel/lumen-framework": "<7.0",
-        "tightenco/collect": "<7.0"
+        "phpunit/phpunit": "^9.5"
     },
     "autoload": {
         "psr-4": {
