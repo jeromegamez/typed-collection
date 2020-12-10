@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 4.0.0 - 2020-12-10
 
 - This library is now based on [`illuminate/collections`](https://github.com/illuminate/collections)
   and tested with PHP 7.4 and 8.0
