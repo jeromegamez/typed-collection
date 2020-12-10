@@ -1,0 +1,38 @@
+name: Tests
+
+on:
+  pull_request:
+  push:
+
+jobs:
+  tests:
+    runs-on: "ubuntu-20.04"
+    strategy:
+      matrix:
+        php: ["7.2", "7.3", "7.4"]
+        stability: ["prefer-stable", "prefer-lowest"]
+    name: PHP ${{ matrix.php }}, ${{ matrix.stability }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: mbstring, intl
+          ini-values: post_max_size=256M, max_execution_time=180
+          coverage: none
+
+      - name: Setup problem matchers for PHPUnit
+        run: echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
+
+      - name: Setup problem matchers for PHP
+        run: echo "::add-matcher::${{ runner.tool_cache }}/php.json"
+
+      - name: Install composer dependencies
+        run: composer update --${{ matrix.stability }} --prefer-dist --no-interaction --no-suggest
+
+      - name: Run tests
+        run: php vendor/bin/phpunit --testdox
