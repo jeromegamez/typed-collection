@@ -31,7 +31,7 @@ class TypedCollection extends Collection
     }
 
 
-    public function offsetSet($key, $value)
+    public function offsetSet($key, $value): void
     {
         $this->assertValidType($value);
 
