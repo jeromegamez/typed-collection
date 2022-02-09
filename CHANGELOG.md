@@ -1,5 +1,10 @@
 # Changelog
 
+## 5.0.0 - 2020-02-09
+
+- Add support for Laravel ^9.0
+- Drop support for Laravel <9.0
+
 ## 4.0.0 - 2020-12-10
 
 - This library is now based on [`illuminate/collections`](https://github.com/illuminate/collections)
