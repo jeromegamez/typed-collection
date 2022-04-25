@@ -80,4 +80,19 @@ class LazyTypedCollectionTest extends TestCase
         $this->assertEquals([null, null, null], $collection->pluck('name')->toArray());
         $this->assertEquals([1, 2, 3], $collection->pluck('id')->toArray());
     }
+
+    /**
+     * @test
+     * @see https://github.com/jeromegamez/typed-collection/issues/11
+     */
+    public function items_are_untyped_when_mapped()
+    {
+        $source = new LazyDateTimeCollection([
+            new \DateTimeImmutable('2022-04-25'),
+        ]);
+
+        $mapped = $source->map(fn($item) => $item->format('Y-m-d'));
+
+        $this->assertEquals(['2022-04-25'], $mapped->toArray());
+    }
 }

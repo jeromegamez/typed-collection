@@ -17,6 +17,11 @@ class LazyTypedCollection extends LazyCollection
         });
     }
 
+    public function map(callable $callback)
+    {
+        return $this->untype()->map($callback);
+    }
+
     public function pluck($value, $key = null)
     {
         return $this->untype()->pluck($value, $key);

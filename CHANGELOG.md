@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Collections are now untyped when using the `map()` method.
+
 ## 5.0.0 - 2020-02-09
 
 - Add support for Laravel ^9.0

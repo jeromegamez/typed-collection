@@ -158,4 +158,19 @@ class TypedCollectionTest extends TestCase
 
         $this->assertEquals(['a', 'b'], $collection->keys()->toArray());
     }
+
+    /**
+     * @test
+     * @see https://github.com/jeromegamez/typed-collection/issues/11
+     */
+    public function items_are_untyped_when_mapped()
+    {
+        $source = new DateTimeCollection([
+            new \DateTimeImmutable('2022-04-25'),
+        ]);
+
+        $mapped = $source->map(fn($item) => $item->format('Y-m-d'));
+
+        $this->assertEquals(['2022-04-25'], $mapped->toArray());
+    }
 }
