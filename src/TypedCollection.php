@@ -67,10 +67,7 @@ class TypedCollection extends Collection
         return $this->untype()->keys();
     }
 
-    /**
-     * @return array
-     */
-    public function toArray()
+    public function toArray(): array
     {
         // If the items in the collection are arrayable themselves,
         // toArray() will convert them to arrays as well. If arrays

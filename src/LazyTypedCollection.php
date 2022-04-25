@@ -27,10 +27,7 @@ class LazyTypedCollection extends LazyCollection
         return $this->untype()->pluck($value, $key);
     }
 
-    /**
-     * @return array
-     */
-    public function toArray()
+    public function toArray(): array
     {
         // If the items in the collection are arrayable themselves,
         // toArray() will convert them to arrays as well. If arrays

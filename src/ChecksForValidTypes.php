@@ -2,18 +2,29 @@
 
 namespace Gamez\Illuminate\Support;
 
+use InvalidArgumentException;
+
 trait ChecksForValidTypes
 {
+    /** @var array<class-string>  */
     protected static $allowedTypes = [];
 
-    protected function assertValidTypes(...$items)
+    /**
+     * @param mixed ...$items
+     * @throws InvalidArgumentException
+     */
+    protected function assertValidTypes(...$items): void
     {
         foreach ($items as $item) {
             $this->assertValidType($item);
         }
     }
 
-    protected function assertValidType($item)
+    /**
+     * @param mixed $item
+     * @throws InvalidArgumentException
+     */
+    protected function assertValidType($item): void
     {
         foreach (static::$allowedTypes as $allowedType) {
             if ($item instanceof $allowedType) {
@@ -21,7 +32,7 @@ trait ChecksForValidTypes
             }
         }
 
-        throw new \InvalidArgumentException(sprintf(
+        throw new InvalidArgumentException(sprintf(
             'A %s collection only accepts objects of the following type(s): %s.',
             get_class($this), implode(', ', static::$allowedTypes)
         ));
