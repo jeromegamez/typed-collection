@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 5.1.0 - 2022-04-25
+
 - Collections are now untyped when using the `map()` method.
 
 ## 5.0.0 - 2020-02-09
