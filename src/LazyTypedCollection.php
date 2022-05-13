@@ -4,10 +4,21 @@ namespace Gamez\Illuminate\Support;
 
 use Illuminate\Support\LazyCollection;
 
+/**
+ * @template TKey of array-key
+ * @template TValue
+ *
+ * @extends LazyCollection<TKey, TValue>
+ */
 class LazyTypedCollection extends LazyCollection
 {
     use ChecksForValidTypes;
 
+    /**
+     * Create a new lazy collection instance.
+     *
+     * @param \Illuminate\Contracts\Support\Arrayable<TKey, TValue>|iterable<TKey, TValue>|(\Closure(): \Generator<TKey, TValue, mixed, void>)|null $source
+     */
     public function __construct($source = null)
     {
         parent::__construct($source);
@@ -27,6 +38,9 @@ class LazyTypedCollection extends LazyCollection
         return $this->untype()->pluck($value, $key);
     }
 
+    /**
+     * @return array<TKey, mixed>
+     */
     public function toArray(): array
     {
         // If the items in the collection are arrayable themselves,
@@ -38,6 +52,8 @@ class LazyTypedCollection extends LazyCollection
 
     /**
      * Returns an untyped collection with all items
+     *
+     * @return LazyCollection<TKey, TValue>
      */
     public function untype(): LazyCollection
     {

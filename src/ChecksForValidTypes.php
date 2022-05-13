@@ -6,7 +6,7 @@ use InvalidArgumentException;
 
 trait ChecksForValidTypes
 {
-    /** @var array<class-string>  */
+    /** @var list<class-string> */
     protected static $allowedTypes = [];
 
     /**

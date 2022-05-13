@@ -4,10 +4,19 @@ namespace Gamez\Illuminate\Support;
 
 use Illuminate\Support\Collection;
 
+/**
+ * @template TKey of array-key
+ * @template TValue
+ *
+ * @extends Collection<TKey, TValue>
+ */
 class TypedCollection extends Collection
 {
     use ChecksForValidTypes;
 
+    /**
+     * @param \Illuminate\Contracts\Support\Arrayable<TKey, TValue>|iterable<TKey, TValue>|null $items
+     */
     public function __construct($items = [])
     {
         $this->assertValidTypes(...$items);
@@ -18,7 +27,8 @@ class TypedCollection extends Collection
     /**
      * Push one or more items onto the end of the collection.
      *
-     * @param  mixed  $values [optional]
+     * @param TValue ...$values
+     *
      * @return $this
      */
     public function push(...$values)
@@ -30,7 +40,10 @@ class TypedCollection extends Collection
         return parent::push(...$values);
     }
 
-
+    /**
+     * @param TKey $key
+     * @param TValue $value
+     */
     public function offsetSet($key, $value): void
     {
         $this->assertValidType($value);
@@ -38,6 +51,10 @@ class TypedCollection extends Collection
         parent::offsetSet($key, $value);
     }
 
+    /**
+     * @param TValue $value
+     * @param ?TKey $key
+     */
     public function prepend($value, $key = null)
     {
         $this->assertValidType($value);
@@ -45,6 +62,9 @@ class TypedCollection extends Collection
         return parent::prepend($value, $key);
     }
 
+    /**
+     * @param TValue $value
+     */
     public function add($value)
     {
         $this->assertValidType($value);
@@ -62,11 +82,17 @@ class TypedCollection extends Collection
         return $this->untype()->pluck($value, $key);
     }
 
+    /**
+     * @return Collection<int, TKey>
+     */
     public function keys()
     {
         return $this->untype()->keys();
     }
 
+    /**
+     * @return array<TKey, mixed>
+     */
     public function toArray(): array
     {
         // If the items in the collection are arrayable themselves,
@@ -78,6 +104,8 @@ class TypedCollection extends Collection
 
     /**
      * Returns an untyped collection with all items
+     *
+     * @return Collection<TKey, TValue>
      */
     public function untype(): Collection
     {
