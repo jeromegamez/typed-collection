@@ -34,3 +34,6 @@ jobs:
 
       - name: Run tests
         run: php vendor/bin/phpunit --testdox
+
+      - name: Run PHPStan
+        run: php vendor/bin/phpstan --error-format=github
