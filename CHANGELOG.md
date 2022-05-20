@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+## 5.2.0 - 2022-05-20
+
+- Collections now includes the same template typings as the upstream Illuminate collections 
+
 ## 5.1.0 - 2022-04-25
 
 - Collections are now untyped when using the `map()` method.
