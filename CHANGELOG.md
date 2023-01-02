@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- The `TypedCollection` and `LazyTypedCollection` classes are now abstract to make clear that they shouldn't
+  be instantiated directly ([#13](https://github.com/jeromegamez/typed-collection/issues/13))
+
 ## 5.2.0 - 2022-05-20
 
 - Collections now includes the same template typings as the upstream Illuminate collections 

@@ -10,7 +10,7 @@ use Illuminate\Support\LazyCollection;
  *
  * @extends LazyCollection<TKey, TValue>
  */
-class LazyTypedCollection extends LazyCollection
+abstract class LazyTypedCollection extends LazyCollection
 {
     use ChecksForValidTypes;
 

@@ -10,7 +10,7 @@ use Illuminate\Support\Collection;
  *
  * @extends Collection<TKey, TValue>
  */
-class TypedCollection extends Collection
+abstract class TypedCollection extends Collection
 {
     use ChecksForValidTypes;
 
