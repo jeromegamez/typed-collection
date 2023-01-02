@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 6.0.0 - 2023-01-02
+
 - The `TypedCollection` and `LazyTypedCollection` classes are now abstract to make clear that they shouldn't
   be instantiated directly ([#13](https://github.com/jeromegamez/typed-collection/issues/13))
 
