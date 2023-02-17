@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 6.1.0 - 2023-02-17
+
 - Added support for Laravel 10
 
 ## 6.0.0 - 2023-01-02
