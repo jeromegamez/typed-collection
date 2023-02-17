@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Added support for Laravel 10
+
 ## 6.0.0 - 2023-01-02
 
 - The `TypedCollection` and `LazyTypedCollection` classes are now abstract to make clear that they shouldn't
