@@ -2,7 +2,7 @@
 
 [![Latest Stable Version](https://poser.pugx.org/gamez/typed-collection/v/stable)](https://packagist.org/packages/gamez/typed-collection)
 [![Total Downloads](https://poser.pugx.org/gamez/typed-collection/downloads)](https://packagist.org/packages/gamez/typed-collection)
-[![Build Status](https://travis-ci.org/jeromegamez/typed-collection.svg?branch=master)](https://travis-ci.org/jeromegamez/typed-collection)
+[![Tests](https://github.com/jeromegamez/typed-collection/actions/workflows/tests.yml/badge.svg)](https://github.com/jeromegamez/typed-collection/actions/workflows/tests.yml)
 [![Sponsor](https://img.shields.io/static/v1?logo=GitHub&label=Sponsor&message=%E2%9D%A4&color=ff69b4)](https://github.com/sponsors/jeromegamez)
 
 ## Installation
