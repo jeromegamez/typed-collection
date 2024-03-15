@@ -20,7 +20,10 @@
     "autoload": {
         "psr-4": {
             "Gamez\\Illuminate\\Support\\": "src"
-        }
+        },
+        "files": [
+            "src/helpers.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
