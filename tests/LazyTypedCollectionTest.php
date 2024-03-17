@@ -3,9 +3,10 @@
 namespace Gamez\Illuminate\Support\Tests;
 
 use DateTime;
+use DateTimeImmutable;
 use Gamez\Illuminate\Support\LazyTypedCollection;
-use Illuminate\Support\Collection;
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Illuminate\Support\LazyCollection;
 
@@ -23,22 +24,22 @@ class LazyTypedCollectionTest extends TestCase
         $this->collection = new LazyDateTimeCollection();
     }
 
-    /** @test */
-    public function it_cannot_be_created_with_an_unsupported_type_of_item()
+    #[Test]
+    public function it_cannot_be_created_with_an_unsupported_type_of_item(): void
     {
         $this->expectException(InvalidArgumentException::class);
         new LazyDateTimeCollection([new DateTime(), 'string', new DateTime()]);
     }
 
-    /** @test */
-    public function it_can_be_created_with_supported_types()
+    #[Test]
+    public function it_can_be_created_with_supported_types(): void
     {
         new LazyDateTimeCollection([new DateTime(), new DateTime(), new DateTime()]);
         $this->addToAssertionCount(1);
     }
 
-    /** @test */
-    public function it_can_be_untyped()
+    #[Test]
+    public function it_can_be_untyped(): void
     {
         $untyped = $this->collection->untype();
 
@@ -47,8 +48,8 @@ class LazyTypedCollectionTest extends TestCase
         $this->assertNotInstanceOf(LazyTypedCollection::class, $untyped);
     }
 
-    /** @test */
-    public function it_can_be_converted_to_an_array()
+    #[Test]
+    public function it_can_be_converted_to_an_array(): void
     {
         $collection = new LazyDateTimeCollection([new DateTime(), new DateTime()]);
 
@@ -56,20 +57,20 @@ class LazyTypedCollectionTest extends TestCase
     }
 
     /**
-     * @test
      * @see https://github.com/jeromegamez/typed-collection/issues/2
      */
-    public function it_works_with_items_that_themselves_are_arrayable()
+    #[Test]
+    public function it_works_with_items_that_themselves_are_arrayable(): void
     {
         $collection = new LazyArrayableItemCollection([new ArrayableItem()]);
         $this->assertCount(1, $collection->toArray());
     }
 
     /**
-     * @test
      * @see https://github.com/jeromegamez/typed-collection/issues/4
      */
-    public function items_can_be_plucked()
+    #[Test]
+    public function items_can_be_plucked(): void
     {
         $collection = new LazyArrayableItemCollection([
             new ArrayableItem(1, 'a'),
@@ -82,16 +83,16 @@ class LazyTypedCollectionTest extends TestCase
     }
 
     /**
-     * @test
      * @see https://github.com/jeromegamez/typed-collection/issues/11
      */
-    public function items_are_untyped_when_mapped()
+    #[Test]
+    public function items_are_untyped_when_mapped(): void
     {
         $source = new LazyDateTimeCollection([
-            new \DateTimeImmutable('2022-04-25'),
+            new DateTimeImmutable('2022-04-25'),
         ]);
 
-        $mapped = $source->map(fn($item) => $item->format('Y-m-d'));
+        $mapped = $source->map(static fn($item) => $item->format('Y-m-d'));
 
         $this->assertEquals(['2022-04-25'], $mapped->toArray());
     }

@@ -3,9 +3,11 @@
 namespace Gamez\Illuminate\Support\Tests;
 
 use DateTime;
+use DateTimeImmutable;
 use Gamez\Illuminate\Support\TypedCollection;
 use Illuminate\Support\Collection;
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 class TypedCollectionTest extends TestCase
@@ -18,78 +20,78 @@ class TypedCollectionTest extends TestCase
         $this->collection = new DateTimeCollection();
     }
 
-    /** @test */
-    public function it_cannot_be_created_with_an_unsupported_type_of_item()
+    #[Test]
+    public function it_cannot_be_created_with_an_unsupported_type_of_item(): void
     {
         $this->expectException(InvalidArgumentException::class);
         new DateTimeCollection([new DateTime(), 'string', new DateTime()]);
     }
 
-    /** @test */
-    public function it_can_be_created_with_supported_types()
+    #[Test]
+    public function it_can_be_created_with_supported_types(): void
     {
         new DateTimeCollection([new DateTime(), new DateTime(), new DateTime()]);
         $this->addToAssertionCount(1);
     }
 
-    /** @test */
-    public function a_supported_value_can_be_added()
+    #[Test]
+    public function a_supported_value_can_be_added(): void
     {
         $this->collection->add(new DateTime());
         $this->addToAssertionCount(1);
     }
 
-    /** @test */
-    public function an_unsupported_value_can_not_be_added()
+    #[Test]
+    public function an_unsupported_value_can_not_be_added(): void
     {
         $this->expectException(InvalidArgumentException::class);
         $this->collection->add('string');
     }
 
-    /** @test */
-    public function a_supported_value_can_be_prepended()
+    #[Test]
+    public function a_supported_value_can_be_prepended(): void
     {
         $this->collection->prepend(new DateTime());
         $this->addToAssertionCount(1);
     }
 
-    /** @test */
-    public function an_unsupported_value_can_not_be_prepended()
+    #[Test]
+    public function an_unsupported_value_can_not_be_prepended(): void
     {
         $this->expectException(InvalidArgumentException::class);
         $this->collection->prepend('string');
     }
 
-    /** @test */
-    public function a_supported_value_can_be_pushed()
+    #[Test]
+    public function a_supported_value_can_be_pushed(): void
     {
         $this->collection->push(new DateTime());
         $this->addToAssertionCount(1);
     }
 
-    /** @test */
-    public function an_unsupported_value_can_not_be_pushed()
+    #[Test]
+    public function an_unsupported_value_can_not_be_pushed(): void
     {
         $this->expectException(InvalidArgumentException::class);
         $this->collection->push('string');
     }
 
-    /** @test */
-    public function a_supported_value_can_be_put()
+    #[Test]
+    public function a_supported_value_can_be_put(): void
     {
         $this->collection->put('key', new DateTime());
         $this->addToAssertionCount(1);
     }
 
-    /** @test */
-    public function an_unsupported_value_can_not_be_put()
+    #[Test]
+    public function an_unsupported_value_can_not_be_put(): void
     {
         $this->expectException(InvalidArgumentException::class);
         $this->collection->put('key', 'string');
     }
 
-    /** @test */
-    public function it_can_be_untyped()
+    #[Test]
+    public function it_can_be_untyped(): void
     {
         $untyped = $this->collection->untype();
 
@@ -98,8 +100,8 @@ class TypedCollectionTest extends TestCase
         $this->assertNotInstanceOf(TypedCollection::class, $untyped);
     }
 
-    /** @test */
-    public function it_can_be_converted_to_an_array()
+    #[Test]
+    public function it_can_be_converted_to_an_array(): void
     {
         $this->collection->push(new DateTime());
         $this->collection->push(new DateTime());
@@ -108,10 +110,10 @@ class TypedCollectionTest extends TestCase
     }
 
     /**
-     * @test
      * @see https://github.com/jeromegamez/typed-collection/issues/2
      */
-    public function it_works_with_items_that_themselves_are_arrayable()
+    #[Test]
+    public function it_works_with_items_that_themselves_are_arrayable(): void
     {
         $collection = new ArrayableItemCollection();
         $collection->push(new ArrayableItem());
@@ -119,10 +121,10 @@ class TypedCollectionTest extends TestCase
     }
 
     /**
-     * @test
      * @see https://github.com/jeromegamez/typed-collection/issues/7
      */
-    public function it_accepts_items_to_be_pushed()
+    #[Test]
+    public function it_accepts_items_to_be_pushed(): void
     {
         $collection = new ArrayableItemCollection();
 
@@ -134,10 +136,10 @@ class TypedCollectionTest extends TestCase
     }
 
     /**
-     * @test
      * @see https://github.com/jeromegamez/typed-collection/issues/4
      */
-    public function items_can_be_plucked()
+    #[Test]
+    public function items_can_be_plucked(): void
     {
         $collection = new ArrayableItemCollection([
             new ArrayableItem(1, 'a'),
@@ -149,8 +151,8 @@ class TypedCollectionTest extends TestCase
         $this->assertEquals([1, 2, 3], $collection->pluck('id')->toArray());
     }
 
-    /** @test */
-    public function it_returns_keys()
+    #[Test]
+    public function it_returns_keys(): void
     {
         $collection = new ArrayableItemCollection();
         $collection->put('a' ,new ArrayableItem());
@@ -160,16 +162,16 @@ class TypedCollectionTest extends TestCase
     }
 
     /**
-     * @test
      * @see https://github.com/jeromegamez/typed-collection/issues/11
      */
-    public function items_are_untyped_when_mapped()
+    #[Test]
+    public function items_are_untyped_when_mapped(): void
     {
         $source = new DateTimeCollection([
-            new \DateTimeImmutable('2022-04-25'),
+            new DateTimeImmutable('2022-04-25'),
         ]);
 
-        $mapped = $source->map(fn($item) => $item->format('Y-m-d'));
+        $mapped = $source->map(static fn($item) => $item->format('Y-m-d'));
 
         $this->assertEquals(['2022-04-25'], $mapped->toArray());
     }
