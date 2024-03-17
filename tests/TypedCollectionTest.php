@@ -7,6 +7,7 @@ use DateTimeImmutable;
 use Gamez\Illuminate\Support\TypedCollection;
 use Illuminate\Support\Collection;
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\DoesNotPerformAssertions;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
@@ -28,17 +29,17 @@ class TypedCollectionTest extends TestCase
     }
 
     #[Test]
+    #[DoesNotPerformAssertions]
     public function it_can_be_created_with_supported_types(): void
     {
         new DateTimeCollection([new DateTime(), new DateTime(), new DateTime()]);
-        $this->addToAssertionCount(1);
     }
 
     #[Test]
+    #[DoesNotPerformAssertions]
     public function a_supported_value_can_be_added(): void
     {
         $this->collection->add(new DateTime());
-        $this->addToAssertionCount(1);
     }
 
     #[Test]
@@ -49,10 +50,10 @@ class TypedCollectionTest extends TestCase
     }
 
     #[Test]
+    #[DoesNotPerformAssertions]
     public function a_supported_value_can_be_prepended(): void
     {
         $this->collection->prepend(new DateTime());
-        $this->addToAssertionCount(1);
     }
 
     #[Test]
@@ -63,10 +64,10 @@ class TypedCollectionTest extends TestCase
     }
 
     #[Test]
+    #[DoesNotPerformAssertions]
     public function a_supported_value_can_be_pushed(): void
     {
         $this->collection->push(new DateTime());
-        $this->addToAssertionCount(1);
     }
 
     #[Test]
@@ -77,10 +78,10 @@ class TypedCollectionTest extends TestCase
     }
 
     #[Test]
+    #[DoesNotPerformAssertions]
     public function a_supported_value_can_be_put(): void
     {
         $this->collection->put('key', new DateTime());
-        $this->addToAssertionCount(1);
     }
 
     #[Test]

@@ -6,6 +6,7 @@ use DateTime;
 use DateTimeImmutable;
 use Gamez\Illuminate\Support\LazyTypedCollection;
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\DoesNotPerformAssertions;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Illuminate\Support\LazyCollection;
@@ -32,10 +33,10 @@ class LazyTypedCollectionTest extends TestCase
     }
 
     #[Test]
+    #[DoesNotPerformAssertions]
     public function it_can_be_created_with_supported_types(): void
     {
         new LazyDateTimeCollection([new DateTime(), new DateTime(), new DateTime()]);
-        $this->addToAssertionCount(1);
     }
 
     #[Test]

@@ -6,6 +6,7 @@ use DateTime;
 use DateTimeInterface;
 use Gamez\Illuminate\Support\TypedCollection;
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\DoesNotPerformAssertions;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
@@ -23,7 +24,6 @@ class HelpersTest extends TestCase
     {
         $typedCollection = typedCollect([new DateTime(), new DateTime()], DateTimeInterface::class);
         $this->assertInstanceOf(TypedCollection::class, $typedCollection);
-        $this->addToAssertionCount(1);
     }
 
     #[Test]
@@ -31,6 +31,5 @@ class HelpersTest extends TestCase
     {
         $typedCollection = typedCollect([new DateTime(), new ArrayableItem()], [DateTimeInterface::class, ArrayableItem::class]);
         $this->assertInstanceOf(TypedCollection::class, $typedCollection);
-        $this->addToAssertionCount(1);
     }
 }
