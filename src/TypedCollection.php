@@ -109,6 +109,6 @@ abstract class TypedCollection extends Collection
      */
     public function untype(): Collection
     {
-        return Collection::make($this->items);
+        return new Collection($this->items);
     }
 }

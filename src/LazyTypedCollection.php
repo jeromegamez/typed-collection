@@ -57,6 +57,6 @@ abstract class LazyTypedCollection extends LazyCollection
      */
     public function untype(): LazyCollection
     {
-        return LazyCollection::make($this);
+        return new LazyCollection($this);
     }
 }

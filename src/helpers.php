@@ -23,6 +23,6 @@ if (!function_exists('typedCollect')) {
         $reflectionProperty = $reflectionClass->getProperty('allowedTypes');
         $reflectionProperty->setValue($collection, $types);
 
-        return $collection::make($value);
+        return new $collection($value);
     }
 }
