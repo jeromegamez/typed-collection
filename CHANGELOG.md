@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Added support for Laravel 11 ([#21](https://github.com/jeromegamez/typed-collection/issues/21))
+
 ## 6.1.0 - 2023-02-17
 
 - Added support for Laravel 10
