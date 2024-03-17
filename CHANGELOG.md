@@ -4,6 +4,8 @@
 
 - Added support for Laravel 11 ([#21](https://github.com/jeromegamez/typed-collection/issues/21))
 - Dropped support for Laravel 9
+- Added a new `typedCollect()` helper method, based off the `collect()` helper method that comes with the Laravel framework.
+  ([#20](https://github.com/jeromegamez/typed-collection/issues/20))
 
 ## 6.1.0 - 2023-02-17
 
