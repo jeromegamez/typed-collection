@@ -4,14 +4,17 @@
     xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
     colors="true"
 >
-  <coverage includeUncoveredFiles="true">
-    <include>
-      <directory suffix=".php">src</directory>
-    </include>
-  </coverage>
-  <testsuites>
-    <testsuite name="Test Suite">
-      <directory>tests</directory>
-    </testsuite>
-  </testsuites>
+    <testsuites>
+        <testsuite name="Test Suite">
+            <directory>tests</directory>
+        </testsuite>
+    </testsuites>
+
+    <coverage ignoreDeprecatedCodeUnits="true"/>
+
+    <source>
+        <include>
+            <directory>src</directory>
+        </include>
+    </source>
 </phpunit>
