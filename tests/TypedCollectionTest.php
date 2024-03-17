@@ -176,4 +176,19 @@ class TypedCollectionTest extends TestCase
 
         $this->assertEquals(['2022-04-25'], $mapped->toArray());
     }
+
+    #[Test]
+    public function items_can_be_of_simple_type(): void
+    {
+        $collection = new class extends TypedCollection {
+            protected static $allowedTypes = ['int', 'bool', 'string'];
+        };
+
+        $collection->add(1);
+        $collection->add(true);
+        $collection->add('string');
+
+        $this->expectException(InvalidArgumentException::class);
+        $collection->add(new \stdClass());
+    }
 }

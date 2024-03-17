@@ -5,6 +5,7 @@ namespace Gamez\Illuminate\Support\Tests;
 use DateTime;
 use DateTimeImmutable;
 use Gamez\Illuminate\Support\LazyTypedCollection;
+use Gamez\Illuminate\Support\TypedCollection;
 use InvalidArgumentException;
 use PHPUnit\Framework\Attributes\DoesNotPerformAssertions;
 use PHPUnit\Framework\Attributes\Test;
@@ -96,5 +97,19 @@ class LazyTypedCollectionTest extends TestCase
         $mapped = $source->map(static fn($item) => $item->format('Y-m-d'));
 
         $this->assertEquals(['2022-04-25'], $mapped->toArray());
+    }
+
+    #[Test]
+    #[DoesNotPerformAssertions]
+    public function items_can_be_of_simple_type(): void
+    {
+        new LazyMixedTypeCollection([1, 'string', new ArrayableItem()]);
+    }
+
+    #[Test]
+    public function items_of_simple_type_can_be_rejected(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        new LazyMixedTypeCollection([true]);
     }
 }

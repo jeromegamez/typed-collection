@@ -55,7 +55,7 @@ try {
     echo $e->getMessage().PHP_EOL;
 }
 /* Output:
-Output: A People collection only accepts objects of the following type(s): Person.
+Output: A People collection only accepts items of the following type(s): Person.
 */
 ```
 
@@ -87,6 +87,12 @@ try {
 Output: A People collection only accepts objects of the following type(s): Person.
 */
 ```
+
+### Supported types
+
+Supported types are class strings, like `Person::class`, or types recognized by the
+[`get_debug_type()` function](https://www.php.net/get-debug-type), `int`, `float`,
+`string`, `bool`, and `array`.
 
 ### Helper functions
 

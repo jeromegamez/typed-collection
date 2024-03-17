@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Added support for simple types recognized by the [`get_debug_type()` function](https://www.php.net/get-debug-type).
+
 ## 7.0.0 - 2024-03-17
 
 - Added support for Laravel 11 ([#21](https://github.com/jeromegamez/typed-collection/issues/21))
