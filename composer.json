@@ -35,5 +35,18 @@
             "type": "github",
             "url": "https://github.com/sponsors/jeromegamez"
         }
-    ]
+    ],
+    "scripts": {
+        "analyse": [
+            "XDEBUG_MODE=off vendor/bin/phpstan"
+        ],
+        "analyze": "@analyse",
+        "test": [
+            "@analyze",
+            "@test-units"
+        ],
+        "test-units": [
+            "vendor/bin/phpunit --testdox"
+        ]
+    }
 }
