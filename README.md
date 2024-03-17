@@ -88,6 +88,15 @@ Output: A People collection only accepts objects of the following type(s): Perso
 */
 ```
 
+### Helper functions
+
+The `typedCollect()` helper function enables you to dynamically create typed collections
+on the fly:
+
+```php
+$dateTimes = typedCollect([new DateTime(), new DateTime()], DateTimeInterface::class);
+```
+
 For further information on how to use Laravel Collections,
 have a look at the [official documentation].
 
