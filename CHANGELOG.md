@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 7.1.0 - 2024-03-18
+
 - Added support for simple types recognized by the [`get_debug_type()` function](https://www.php.net/get-debug-type).
 
 ## 7.0.0 - 2024-03-17
