@@ -7,7 +7,7 @@ use InvalidArgumentException;
 trait ChecksForValidTypes
 {
     /** @var list<class-string|non-empty-string> */
-    protected static $allowedTypes = [];
+    protected static array $allowedTypes = [];
 
     /**
      * @param mixed ...$items

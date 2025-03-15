@@ -5,6 +5,17 @@
 - Dropped support for Laravel 10 and PHP 8.1
 - Added support for Laravel 12
 
+### Breaking Changes
+
+The `$allowedTypes` static property is now typed
+```diff
+class People extends TypedCollection
+{
+-     protected static $allowedTypes = [Person::class];
++     protected static array $allowedTypes = [Person::class];
+}
+```
+
 ## 7.1.0 - 2024-03-18
 
 - Added support for simple types recognized by the [`get_debug_type()` function](https://www.php.net/get-debug-type).
