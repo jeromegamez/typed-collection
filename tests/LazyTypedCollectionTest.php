@@ -5,7 +5,6 @@ namespace Gamez\Illuminate\Support\Tests;
 use DateTime;
 use DateTimeImmutable;
 use Gamez\Illuminate\Support\LazyTypedCollection;
-use Gamez\Illuminate\Support\TypedCollection;
 use InvalidArgumentException;
 use PHPUnit\Framework\Attributes\DoesNotPerformAssertions;
 use PHPUnit\Framework\Attributes\Test;
@@ -14,30 +13,25 @@ use Illuminate\Support\LazyCollection;
 
 class LazyTypedCollectionTest extends TestCase
 {
-    /** @var LazyDateTimeCollection */
-    private $collection;
+    private LazyItemCollection $collection;
 
     protected function setUp(): void
     {
-        if (!class_exists(LazyCollection::class)) {
-            $this->markTestSkipped();
-        }
-
-        $this->collection = new LazyDateTimeCollection();
+        $this->collection = new LazyItemCollection();
     }
 
     #[Test]
     public function it_cannot_be_created_with_an_unsupported_type_of_item(): void
     {
         $this->expectException(InvalidArgumentException::class);
-        new LazyDateTimeCollection([new DateTime(), 'string', new DateTime()]);
+        new LazyItemCollection([new Item(), 'string', new Item()]);
     }
 
     #[Test]
     #[DoesNotPerformAssertions]
     public function it_can_be_created_with_supported_types(): void
     {
-        new LazyDateTimeCollection([new DateTime(), new DateTime(), new DateTime()]);
+        new LazyItemCollection([new Item(), new Item(), new Item()]);
     }
 
     #[Test]
@@ -46,14 +40,14 @@ class LazyTypedCollectionTest extends TestCase
         $untyped = $this->collection->untype();
 
         $this->assertInstanceOf(LazyCollection::class, $untyped);
-        $this->assertNotInstanceOf(LazyDateTimeCollection::class, $untyped);
+        $this->assertNotInstanceOf(LazyItemCollection::class, $untyped);
         $this->assertNotInstanceOf(LazyTypedCollection::class, $untyped);
     }
 
     #[Test]
     public function it_can_be_converted_to_an_array(): void
     {
-        $collection = new LazyDateTimeCollection([new DateTime(), new DateTime()]);
+        $collection = new LazyItemCollection([new Item(), new Item()]);
 
         $this->assertCount(2, $collection->toArray());
     }
@@ -64,7 +58,7 @@ class LazyTypedCollectionTest extends TestCase
     #[Test]
     public function it_works_with_items_that_themselves_are_arrayable(): void
     {
-        $collection = new LazyArrayableItemCollection([new ArrayableItem()]);
+        $collection = new LazyItemCollection([new Item()]);
         $this->assertCount(1, $collection->toArray());
     }
 
@@ -74,10 +68,10 @@ class LazyTypedCollectionTest extends TestCase
     #[Test]
     public function items_can_be_plucked(): void
     {
-        $collection = new LazyArrayableItemCollection([
-            new ArrayableItem(1, 'a'),
-            new ArrayableItem(2, 'b'),
-            new ArrayableItem(3, 'c')
+        $collection = new LazyItemCollection([
+            new Item(1, 'a'),
+            new Item(2, 'b'),
+            new Item(3, 'c')
         ]);
 
         $this->assertEquals([null, null, null], $collection->pluck('name')->toArray());
@@ -90,26 +84,25 @@ class LazyTypedCollectionTest extends TestCase
     #[Test]
     public function items_are_untyped_when_mapped(): void
     {
-        $source = new LazyDateTimeCollection([
-            new DateTimeImmutable('2022-04-25'),
-        ]);
+        $source = new LazyItemCollection([new Item(2, 'two')]);
 
-        $mapped = $source->map(static fn($item) => $item->format('Y-m-d'));
+        $mapped = $source->map(static fn(Item $item) => $item->value);
 
-        $this->assertEquals(['2022-04-25'], $mapped->toArray());
+        $this->assertEquals(['two'], $mapped->toArray());
     }
 
     #[Test]
     #[DoesNotPerformAssertions]
     public function items_can_be_of_simple_type(): void
     {
-        new LazyMixedTypeCollection([1, 'string', new ArrayableItem()]);
+        new LazyMixedTypeCollection([1, 'string', new Item()]);
     }
 
     #[Test]
     public function items_of_simple_type_can_be_rejected(): void
     {
         $this->expectException(InvalidArgumentException::class);
+        /** @phpstan-ignore argument.type */
         new LazyMixedTypeCollection([true]);
     }
 }
