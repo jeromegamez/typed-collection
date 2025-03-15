@@ -10,6 +10,10 @@
 > a collection are of a given type or list of types. However, this verification does not
 > prevent items of different types to be added at a later time.
 
+> [!NOTE]  
+> If you use Laravel collections combined with Larastan/PHPStan, you won't need this library
+> and can just™ annotate your collection classes directly.
+
 ## Installation
 
 The package can be installed with [Composer]:
@@ -40,6 +44,9 @@ $jeffrey = new Person('Jeffrey');
 ```php
 use Gamez\Illuminate\Support\TypedCollection;
 
+/**
+ * @extends TypedCollection<array-key, Person> 
+ */
 class People extends TypedCollection
 {
     protected static array $allowedTypes = [Person::class];
@@ -69,6 +76,9 @@ Output: A People collection only accepts items of the following type(s): Person.
 ```php
 use Gamez\Illuminate\Support\LazyTypedCollection;
 
+/**
+ * @extends LazyTypedCollection<array-key, Person> 
+ */
 class LazyPeople extends LazyTypedCollection
 {
     protected static array $allowedTypes = [Person::class];
@@ -91,6 +101,18 @@ try {
 /* Output:
 Output: A People collection only accepts objects of the following type(s): Person.
 */
+```
+
+### Mixed collections
+
+```php
+/**
+ * @extends LazyTypedCollection<array-key, int|string|Person> 
+ */
+class MixedTypeCollection extends TypedCollection
+{
+    protected static array $allowedTypes = ['int', 'string', Person::class];
+}
 ```
 
 ### Supported types
