@@ -8,5 +8,5 @@ use Gamez\Illuminate\Support\LazyTypedCollection;
 
 final class LazyMixedTypeCollection extends LazyTypedCollection
 {
-    protected static $allowedTypes = ['int', 'string', ArrayableItem::class];
+    protected static array $allowedTypes = ['int', 'string', ArrayableItem::class];
 }

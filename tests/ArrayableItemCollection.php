@@ -6,5 +6,5 @@ use Gamez\Illuminate\Support\TypedCollection;
 
 class ArrayableItemCollection extends TypedCollection
 {
-    protected static $allowedTypes = [ArrayableItem::class];
+    protected static array $allowedTypes = [ArrayableItem::class];
 }

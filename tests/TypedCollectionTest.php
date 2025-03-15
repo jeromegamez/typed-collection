@@ -181,7 +181,7 @@ class TypedCollectionTest extends TestCase
     public function items_can_be_of_simple_type(): void
     {
         $collection = new class extends TypedCollection {
-            protected static $allowedTypes = ['int', 'bool', 'string'];
+            protected static array $allowedTypes = ['int', 'bool', 'string'];
         };
 
         $collection->add(1);

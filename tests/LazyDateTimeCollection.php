@@ -7,5 +7,5 @@ use Gamez\Illuminate\Support\LazyTypedCollection;
 
 class LazyDateTimeCollection extends LazyTypedCollection
 {
-    protected static $allowedTypes = [DateTimeInterface::class];
+    protected static array $allowedTypes = [DateTimeInterface::class];
 }

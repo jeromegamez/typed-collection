@@ -42,7 +42,7 @@ use Gamez\Illuminate\Support\TypedCollection;
 
 class People extends TypedCollection
 {
-    protected static $allowedTypes = [Person::class];
+    protected static array $allowedTypes = [Person::class];
 }
 
 $people = People::make([$taylor, $jeffrey])
@@ -71,7 +71,7 @@ use Gamez\Illuminate\Support\LazyTypedCollection;
 
 class LazyPeople extends LazyTypedCollection
 {
-    protected static $allowedTypes = [Person::class];
+    protected static array $allowedTypes = [Person::class];
 }
 
 $lazyPeople = LazyPeople::make([$taylor, $jeffrey])
