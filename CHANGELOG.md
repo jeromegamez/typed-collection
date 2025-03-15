@@ -3,6 +3,7 @@
 ## Unreleased
 
 - Dropped support for Laravel 10 and PHP 8.1
+- Added support for Laravel 12
 
 ## 7.1.0 - 2024-03-18
 
