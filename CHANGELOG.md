@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Dropped support for Laravel 10 and PHP 8.1
+
 ## 7.1.0 - 2024-03-18
 
 - Added support for simple types recognized by the [`get_debug_type()` function](https://www.php.net/get-debug-type).
