@@ -1,6 +1,8 @@
 <?php
 
 use Gamez\Illuminate\Support\TypedCollection;
+use Illuminate\Contracts\Support\Arrayable;
+use Illuminate\Support\Collection;
 
 if (!function_exists('typedCollect')) {
     /**
@@ -9,11 +11,11 @@ if (!function_exists('typedCollect')) {
      * @template TKey of array-key
      * @template TValue
      *
-     * @param \Illuminate\Contracts\Support\Arrayable<TKey, TValue>|iterable<TKey, TValue>|null $value
+     * @param Arrayable<TKey, TValue>|iterable<TKey, TValue>|null $value
      * @param string|string[] $types
-     * @return \Illuminate\Support\Collection<TKey, TValue>
+     * @return Collection<TKey, TValue>
      */
-    function typedCollect($value = [], string|array $types = [])
+    function typedCollect($value = [], string|array $types = []): Collection
     {
         $types = is_array($types) ? $types : [$types];
 

@@ -2,6 +2,7 @@
 
 namespace Gamez\Illuminate\Support;
 
+use Illuminate\Support\Enumerable;
 use Illuminate\Support\LazyCollection;
 
 /**
@@ -12,28 +13,37 @@ use Illuminate\Support\LazyCollection;
  */
 abstract class LazyTypedCollection extends LazyCollection
 {
+    /**
+     * @use ChecksForValidTypes<TKey, TValue>
+     */
     use ChecksForValidTypes;
 
-    /**
-     * Create a new lazy collection instance.
-     *
-     * @param \Illuminate\Contracts\Support\Arrayable<TKey, TValue>|iterable<TKey, TValue>|(\Closure(): \Generator<TKey, TValue, mixed, void>)|null $source
-     */
     public function __construct($source = null)
     {
         parent::__construct($source);
 
-        $this->each(function ($item) {
+        foreach ($this->source as $item) {
             $this->assertValidType($item);
-        });
+        }
     }
 
-    public function map(callable $callback)
+    /**
+     * @template TMapValue
+     *
+     * @param  callable(TValue, TKey): TMapValue  $callback
+     * @return LazyCollection<TKey, TMapValue>
+     */
+    public function map(callable $callback): LazyCollection
     {
         return $this->untype()->map($callback);
     }
 
-    public function pluck($value, $key = null)
+    /**
+     * @param string|array<array-key, string>  $value
+     * @param string|null $key
+     * @return LazyCollection<array-key, mixed>
+     */
+    public function pluck($value, $key = null): LazyCollection
     {
         return $this->untype()->pluck($value, $key);
     }

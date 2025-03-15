@@ -7,12 +7,25 @@
 
 ### Breaking Changes
 
-The `$allowedTypes` static property is now typed
+The `$allowedTypes` static property is now typed:
+
 ```diff
 class People extends TypedCollection
 {
 -     protected static $allowedTypes = [Person::class];
 +     protected static array $allowedTypes = [Person::class];
+}
+```
+
+If you're using PHPStan, you will need to add annotations accordingly
+
+```diff
++ /**
++  * @extends TypedCollection<array-key, int|string|Person>
++  */
+class MixedItemCollection extends TypedCollection
+{
+    protected static array $allowedTypes = ['int', 'string', Person::class];
 }
 ```
 

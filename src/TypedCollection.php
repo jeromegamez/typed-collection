@@ -12,14 +12,14 @@ use Illuminate\Support\Collection;
  */
 abstract class TypedCollection extends Collection
 {
+    /**
+     * @use ChecksForValidTypes<TKey, TValue>
+     */
     use ChecksForValidTypes;
 
-    /**
-     * @param \Illuminate\Contracts\Support\Arrayable<TKey, TValue>|iterable<TKey, TValue>|null $items
-     */
     public function __construct($items = [])
     {
-        $this->assertValidTypes(...$items);
+        $this->assertValidTypes($items);
 
         parent::__construct($items);
     }
@@ -29,7 +29,7 @@ abstract class TypedCollection extends Collection
      *
      * @param TValue ...$values
      *
-     * @return $this
+     * @return static
      */
     public function push(...$values)
     {
@@ -63,20 +63,31 @@ abstract class TypedCollection extends Collection
     }
 
     /**
-     * @param TValue $value
+     * @param TValue $item
      */
-    public function add($value)
+    public function add($item)
     {
-        $this->assertValidType($value);
+        $this->assertValidType($item);
 
-        return parent::add($value);
+        return parent::add($item);
     }
 
+    /**
+     * @template TMapValue
+     *
+     * @param callable(TValue, TKey): TMapValue  $callback
+     * @return Collection<TKey, TMapValue>
+     */
     public function map(callable $callback)
     {
         return $this->untype()->map($callback);
     }
 
+    /**
+     * @param string|array<array-key, string>  $value
+     * @param string|null $key
+     * @return Collection<array-key, mixed>
+     */
     public function pluck($value, $key = null)
     {
         return $this->untype()->pluck($value, $key);
