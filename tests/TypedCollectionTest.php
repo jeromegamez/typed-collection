@@ -191,4 +191,20 @@ class TypedCollectionTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
         $collection->add(new Item());
     }
+
+    /**
+     * @see https://github.com/jeromegamez/typed-collection/issues/25
+     */
+    #[Test]
+    #[DoesNotPerformAssertions]
+    public function it_can_have_different_types_of_keys(): void
+    {
+        $items = [
+            'item' => new Item(),
+            1 => new Item(),
+            2 => new Item(),
+        ];
+
+        var_dump(ItemCollection::make($items)->all());
+    }
 }
