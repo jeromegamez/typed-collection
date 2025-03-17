@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 8.0.0 - 2025-03-17
+
 - Dropped support for Laravel 10 and PHP 8.1
 - Added support for Laravel 12
 
