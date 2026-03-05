@@ -3,26 +3,32 @@ name: Tests
 on:
   pull_request:
     paths:
-      - 'src/**'
-      - 'tests/**'
-      - '.github/workflows/tests.yml'
-      - 'composer.json'
+      - src/**
+      - tests/**
+      - .github/workflows/tests.yml
+      - composer.json
   push:
-    branches: ['main']
+    branches:
+      - main
     paths:
-      - 'src/**'
-      - 'tests/**'
-      - '.github/workflows/tests.yml'
-      - 'composer.json'
+      - src/**
+      - tests/**
+      - .github/workflows/tests.yml
+      - composer.json
   workflow_dispatch:
 
 jobs:
   tests:
-    runs-on: "ubuntu-latest"
+    runs-on: ubuntu-latest
+
     strategy:
       matrix:
-        php: ["8.2", "8.3"]
-        laravel: ["^11.0", "^12.0"]
+        php: ['8.2', '8.3']
+        laravel: [^11.0, ^12.0, ^13.0]
+        exclude:
+          - laravel: ^13.0
+            php: '8.2'
+
     name: PHP ${{ matrix.php }} - Laravel ${{ matrix.laravel }}
 
     steps:
