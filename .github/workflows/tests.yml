@@ -21,8 +21,12 @@ jobs:
     runs-on: "ubuntu-latest"
     strategy:
       matrix:
-        php: ["8.2", "8.3"]
+        php: ["8.2", "8.3", "8.4", "8.5"]
         laravel: ["^11.0", "^12.0"]
+        include:
+          - php: "8.6"
+            laravel: "^12.0"
+            composer-options: "--ignore-platform-req=php+"
     name: PHP ${{ matrix.php }} - Laravel ${{ matrix.laravel }}
 
     steps:
@@ -43,7 +47,7 @@ jobs:
       - name: Install composer dependencies
         run: |
           composer require "illuminate/collections:${{ matrix.laravel }}" --no-interaction --no-update
-          composer update --with-all-dependencies --prefer-dist --no-interaction
+          composer update --with-all-dependencies --prefer-dist --no-interaction ${{ matrix.composer-options }}
 
       - name: Run tests
         run: php vendor/bin/phpunit --testdox
