@@ -209,7 +209,7 @@ class TypedCollectionTest extends TestCase
     }
 
     #[Test]
-    public function can_be_pushed(): void
+    public function items_can_be_pushed(): void
     {
         $collection = new class extends TypedCollection {
             protected static array $allowedTypes = ['string'];

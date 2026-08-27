@@ -41,7 +41,7 @@ abstract class TypedCollection extends Collection
     }
 
     /**
-     * @param TKey $key
+     * @param TKey|null $key
      * @param TValue $value
      */
     public function offsetSet($key, $value): void
