@@ -207,4 +207,17 @@ class TypedCollectionTest extends TestCase
 
         var_dump(ItemCollection::make($items)->all());
     }
+
+    #[Test]
+    public function can_be_pushed(): void
+    {
+        $collection = new class extends TypedCollection {
+            protected static array $allowedTypes = ['string'];
+        };
+
+        // this checks PHPStan rule `offsetAssign.dimType`
+        $collection[] = 'string';
+
+        $this->assertSame(1, $collection->count());
+    }
 }
