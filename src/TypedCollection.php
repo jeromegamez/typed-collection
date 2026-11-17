@@ -30,6 +30,8 @@ abstract class TypedCollection extends Collection
      * @param TValue ...$values
      *
      * @return static
+     *
+     * @phpstan-this-out static<TKey|int, TValue>
      */
     public function push(...$values)
     {
@@ -54,6 +56,8 @@ abstract class TypedCollection extends Collection
     /**
      * @param TValue $value
      * @param ?TKey $key
+     *
+     * @phpstan-this-out ($key is null ? static<TKey|int, TValue> : $this)
      */
     public function prepend($value, $key = null)
     {
@@ -64,6 +68,8 @@ abstract class TypedCollection extends Collection
 
     /**
      * @param TValue $item
+     *
+     * @phpstan-this-out static<TKey|int, TValue>
      */
     public function add($item)
     {
