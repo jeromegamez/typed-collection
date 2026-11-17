@@ -43,6 +43,18 @@ abstract class TypedCollection extends Collection
     }
 
     /**
+     * @param TKey $key
+     * @param TValue $value
+     * @return $this
+     *
+     * @phpstan-this-out static<TKey, TValue>
+     */
+    public function put($key, $value)
+    {
+        return parent::put($key, $value);
+    }
+
+    /**
      * @param TKey|null $key
      * @param TValue $value
      */

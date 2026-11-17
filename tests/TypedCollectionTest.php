@@ -78,10 +78,12 @@ class TypedCollectionTest extends TestCase
     }
 
     #[Test]
-    #[DoesNotPerformAssertions]
     public function a_supported_value_can_be_put(): void
     {
-        $this->collection->put('key', new Item());
+        $item = new Item();
+
+        $this->assertSame($this->collection, $this->collection->put('key', $item));
+        $this->assertSame(['key' => $item], $this->collection->all());
     }
 
     #[Test]
