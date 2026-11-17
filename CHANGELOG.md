@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+## 8.1.2 - 2026-11-17
+
+- Fixed PHPStan mutation annotations for `TypedCollection::add()`, `prepend()`, and `push()`
+- Fixed `TypedCollection::put()` value type annotations for consistent PHPStan analysis with Laravel 12 and 13
+
 ## 8.1.1 - 2026-08-27
 
 - Fixed `offsetSet()` `$key` annotation 
